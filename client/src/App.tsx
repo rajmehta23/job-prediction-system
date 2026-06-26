@@ -534,8 +534,8 @@ export default function App() {
           </div>
         </header>
 
-        {/* Dashboard Grid - 3 Columns on Large Screens */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+        {/* Dashboard Grid - 2 Columns */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           
           {/* COLUMN 1: Profile Metrics Form */}
           <div className="space-y-8">
@@ -908,8 +908,10 @@ export default function App() {
             </div>
           </div>
 
-          {/* COLUMN 3: Recommendations & Logs */}
-          <div className="space-y-8">
+        </div>
+
+        {/* Full-Width Sections Below the Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
             
             {/* Profile Insights Recommendation Section */}
             <div className="glass-panel rounded-3xl p-6 sm:p-8">
@@ -1023,8 +1025,6 @@ export default function App() {
                 )}
               </AnimatePresence>
             </div>
-
-          </div>
 
         </div>
 
