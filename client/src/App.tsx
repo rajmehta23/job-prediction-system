@@ -188,7 +188,7 @@ interface PredictionHistory {
   status: string
 }
 
-const BACKEND_URL = 'http://127.0.0.1:5000'
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://127.0.0.1:5000'
 
 export default function App() {
   // Input fields state
@@ -467,7 +467,7 @@ export default function App() {
       <div className="absolute bottom-[20%] right-[-10%] w-[45%] h-[45%] rounded-full bg-neon-purple/8 dark:bg-neon-purple/10 blur-[130px] pointer-events-none z-0" />
 
       {/* Main Content Area */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pt-8 z-10">
+      <div className="relative max-w-[92vw] mx-auto px-4 sm:px-6 pt-8 z-10">
         
         {/* Navigation & Header */}
         <header className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-8 mb-8 border-b border-glass-border">
