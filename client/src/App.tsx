@@ -188,7 +188,7 @@ interface PredictionHistory {
   status: string
 }
 
-const BACKEND_URL = 'http://localhost:5000'
+const BACKEND_URL = 'http://127.0.0.1:5000'
 
 export default function App() {
   // Input fields state
