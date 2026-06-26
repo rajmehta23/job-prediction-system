@@ -467,7 +467,7 @@ export default function App() {
       <div className="absolute bottom-[20%] right-[-10%] w-[45%] h-[45%] rounded-full bg-neon-purple/8 dark:bg-neon-purple/10 blur-[130px] pointer-events-none z-0" />
 
       {/* Main Content Area */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 z-10">
+      <div className="relative max-w-[90rem] mx-auto px-4 sm:px-8 lg:px-12 pt-8 z-10">
         
         {/* Navigation & Header */}
         <header className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-8 mb-8 border-b border-glass-border">
@@ -481,12 +481,12 @@ export default function App() {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className={`text-2xl sm:text-3xl font-extrabold tracking-tight font-outfit bg-clip-text text-transparent bg-gradient-to-r ${isDarkMode ? 'from-white via-slate-200 to-neon-cyan' : 'from-slate-900 via-slate-700 to-neon-blue'}`}>
+                <h1 className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-outfit bg-clip-text text-transparent bg-gradient-to-r ${isDarkMode ? 'from-white via-slate-200 to-neon-cyan' : 'from-slate-900 via-slate-700 to-neon-blue'}`}>
                   Job Prediction System
                 </h1>
                 {/* Health dot */}
                 <span 
-                  className={`w-2 h-2 rounded-full mt-1.5 ${
+                  className={`w-2.5 h-2.5 rounded-full mt-1.5 ${
                     backendHealthy === true 
                       ? 'bg-neon-green shadow-[0_0_8px_rgba(0,245,212,0.6)]' 
                       : 'bg-neon-red animate-pulse'
@@ -494,7 +494,7 @@ export default function App() {
                   title={backendHealthy ? "Predictor Connected" : "Local Model Active"}
                 />
               </div>
-              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">ML Placement Probability Engine</p>
+              <p className="text-sm sm:text-base text-slate-500 dark:text-slate-400 mt-1">ML Placement Probability Engine</p>
             </div>
           </div>
 
@@ -534,11 +534,11 @@ export default function App() {
           </div>
         </header>
 
-        {/* Dashboard Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* Dashboard Grid - 3 Columns on Large Screens */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
           
-          {/* LEFT: Parameters Form */}
-          <div className="lg:col-span-7 space-y-8">
+          {/* COLUMN 1: Profile Metrics Form */}
+          <div className="space-y-8">
             <div className="glass-panel rounded-3xl p-6 sm:p-8 relative overflow-hidden">
               <div className="absolute top-0 right-0 p-6 opacity-5 pointer-events-none text-neon-cyan">
                 <Sparkles size={80} />
@@ -546,7 +546,7 @@ export default function App() {
               
               <div className="flex items-center gap-2 mb-6">
                 <Zap className="text-neon-cyan animate-pulse-slow" size={20} />
-                <h2 className="text-xl font-bold font-outfit text-slate-900 dark:text-white">Student Profile Metrics</h2>
+                <h2 className="text-2xl font-bold font-outfit text-slate-900 dark:text-white">Student Profile Metrics</h2>
               </div>
 
               {/* Form Input Rows */}
@@ -555,11 +555,11 @@ export default function App() {
                 {/* CGPA */}
                 <div>
                   <div className="flex justify-between items-center mb-2">
-                    <label className="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-200">
+                    <label className="flex items-center gap-2 text-base font-semibold text-slate-700 dark:text-slate-200">
                       <BookOpen size={16} className="text-neon-cyan" />
                       Cumulative GPA (CGPA)
                     </label>
-                    <span className="text-lg font-mono font-bold text-neon-cyan">{cgpa.toFixed(2)}</span>
+                    <span className="text-xl font-mono font-bold text-neon-cyan">{cgpa.toFixed(2)}</span>
                   </div>
                   <div className="flex items-center gap-4">
                     <input 
@@ -581,10 +581,10 @@ export default function App() {
                         const val = parseFloat(e.target.value)
                         if (!isNaN(val)) setCgpa(Math.min(Math.max(val, 0), 10))
                       }}
-                      className="w-16 px-2 py-1 bg-white dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-lg font-mono font-semibold text-center text-sm text-slate-800 dark:text-white focus:outline-none focus:border-neon-cyan"
+                      className="w-20 px-2 py-1 bg-white dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-lg font-mono font-semibold text-center text-base text-slate-800 dark:text-white focus:outline-none focus:border-neon-cyan"
                     />
                   </div>
-                  <div className="flex justify-between text-[10px] text-slate-500 mt-1.5 font-mono">
+                  <div className="flex justify-between text-xs text-slate-500 mt-1.5 font-mono">
                     <span>0.0</span>
                     <span>5.0 (Avg)</span>
                     <span>10.0</span>
@@ -597,7 +597,7 @@ export default function App() {
                   {/* Internships */}
                   <div className="p-4 bg-slate-50/50 dark:bg-slate-900/40 border border-glass-border rounded-2xl flex flex-col justify-between">
                     <div className="flex justify-between items-start mb-2">
-                      <label className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Internships</label>
+                      <label className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Internships</label>
                       <Briefcase size={16} className="text-neon-blue" />
                     </div>
                     <div className="flex items-center justify-between mt-3">
@@ -607,7 +607,7 @@ export default function App() {
                       >
                         <Minus size={14} />
                       </button>
-                      <span className="text-2xl font-bold font-mono text-slate-900 dark:text-white">{internships}</span>
+                      <span className="text-3xl font-bold font-mono text-slate-900 dark:text-white">{internships}</span>
                       <button 
                         onClick={() => setInternships(Math.min(10, internships + 1))}
                         className="p-1.5 rounded-lg bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors cursor-pointer"
@@ -620,7 +620,7 @@ export default function App() {
                   {/* Projects */}
                   <div className="p-4 bg-slate-50/50 dark:bg-slate-900/40 border border-glass-border rounded-2xl flex flex-col justify-between">
                     <div className="flex justify-between items-start mb-2">
-                      <label className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Projects</label>
+                      <label className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Projects</label>
                       <Code size={16} className="text-neon-purple" />
                     </div>
                     <div className="flex items-center justify-between mt-3">
@@ -630,7 +630,7 @@ export default function App() {
                       >
                         <Minus size={14} />
                       </button>
-                      <span className="text-2xl font-bold font-mono text-slate-900 dark:text-white">{projects}</span>
+                      <span className="text-3xl font-bold font-mono text-slate-900 dark:text-white">{projects}</span>
                       <button 
                         onClick={() => setProjects(Math.min(15, projects + 1))}
                         className="p-1.5 rounded-lg bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors cursor-pointer"
@@ -643,7 +643,7 @@ export default function App() {
                   {/* Certifications */}
                   <div className="p-4 bg-slate-50/50 dark:bg-slate-900/40 border border-glass-border rounded-2xl flex flex-col justify-between">
                     <div className="flex justify-between items-start mb-2">
-                      <label className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Certifications</label>
+                      <label className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Certifications</label>
                       <Award size={16} className="text-neon-green" />
                     </div>
                     <div className="flex items-center justify-between mt-3">
@@ -653,7 +653,7 @@ export default function App() {
                       >
                         <Minus size={14} />
                       </button>
-                      <span className="text-2xl font-bold font-mono text-slate-900 dark:text-white">{certifications}</span>
+                      <span className="text-3xl font-bold font-mono text-slate-900 dark:text-white">{certifications}</span>
                       <button 
                         onClick={() => setCertifications(Math.min(15, certifications + 1))}
                         className="p-1.5 rounded-lg bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors cursor-pointer"
@@ -668,11 +668,11 @@ export default function App() {
                 {/* Sliders: Aptitude Score */}
                 <div>
                   <div className="flex justify-between items-center mb-2">
-                    <label className="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-200">
+                    <label className="flex items-center gap-2 text-base font-semibold text-slate-700 dark:text-slate-200">
                       <TrendingUp size={16} className="text-neon-purple" />
                       Aptitude Score
                     </label>
-                    <span className="text-lg font-mono font-bold text-neon-purple">{aptitude} / 100</span>
+                    <span className="text-xl font-mono font-bold text-neon-purple">{aptitude} / 100</span>
                   </div>
                   <div className="flex items-center gap-4">
                     <input 
@@ -692,10 +692,10 @@ export default function App() {
                         const val = parseInt(e.target.value)
                         if (!isNaN(val)) setAptitude(Math.min(Math.max(val, 0), 100))
                       }}
-                      className="w-16 px-2 py-1 bg-white dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-lg font-mono font-semibold text-center text-sm text-slate-800 dark:text-white focus:outline-none focus:border-neon-purple"
+                      className="w-20 px-2 py-1 bg-white dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-lg font-mono font-semibold text-center text-base text-slate-800 dark:text-white focus:outline-none focus:border-neon-purple"
                     />
                   </div>
-                  <div className="flex justify-between text-[10px] text-slate-500 mt-1.5 font-mono">
+                  <div className="flex justify-between text-xs text-slate-500 mt-1.5 font-mono">
                     <span>0</span>
                     <span>50 (Avg)</span>
                     <span>100</span>
@@ -705,11 +705,11 @@ export default function App() {
                 {/* Sliders: Communication Score */}
                 <div>
                   <div className="flex justify-between items-center mb-2">
-                    <label className="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-200">
+                    <label className="flex items-center gap-2 text-base font-semibold text-slate-700 dark:text-slate-200">
                       <Award size={16} className="text-neon-green" />
                       Communication Score
                     </label>
-                    <span className="text-lg font-mono font-bold text-neon-green">{communication} / 100</span>
+                    <span className="text-xl font-mono font-bold text-neon-green">{communication} / 100</span>
                   </div>
                   <div className="flex items-center gap-4">
                     <input 
@@ -729,10 +729,10 @@ export default function App() {
                         const val = parseInt(e.target.value)
                         if (!isNaN(val)) setCommunication(Math.min(Math.max(val, 0), 100))
                       }}
-                      className="w-16 px-2 py-1 bg-white dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-lg font-mono font-semibold text-center text-sm text-slate-800 dark:text-white focus:outline-none focus:border-neon-green"
+                      className="w-20 px-2 py-1 bg-white dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-lg font-mono font-semibold text-center text-base text-slate-800 dark:text-white focus:outline-none focus:border-neon-green"
                     />
                   </div>
-                  <div className="flex justify-between text-[10px] text-slate-500 mt-1.5 font-mono">
+                  <div className="flex justify-between text-xs text-slate-500 mt-1.5 font-mono">
                     <span>0</span>
                     <span>50 (Avg)</span>
                     <span>100</span>
@@ -769,64 +769,15 @@ export default function App() {
                 )}
               </div>
             </div>
-
-            {/* Profile Insights Recommendation Section */}
-            <div className="glass-panel rounded-3xl p-6 sm:p-8">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2">
-                  <Info className="text-neon-purple" size={20} />
-                  <h3 className="text-lg font-bold font-outfit text-slate-900 dark:text-white">Interactive Recommendations</h3>
-                </div>
-                <span className="text-xs bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-mono px-2 py-0.5 rounded border border-glass-border">
-                  AI Checklist
-                </span>
-              </div>
-
-              <div className="space-y-4">
-                {activeInsights.map((insight, idx) => (
-                  <div 
-                    key={idx}
-                    className={`flex items-start gap-3 p-3.5 rounded-xl border ${
-                      insight.urgency === 'high' 
-                        ? 'bg-red-50/50 dark:bg-neon-red/5 border-red-200 dark:border-neon-red/20' 
-                        : insight.urgency === 'medium'
-                          ? 'bg-orange-50/50 dark:bg-neon-orange/5 border-orange-200 dark:border-neon-orange/20'
-                          : insight.urgency === 'low'
-                            ? 'bg-blue-50/50 dark:bg-neon-blue/5 border-blue-200 dark:border-neon-blue/20'
-                            : 'bg-emerald-50/50 dark:bg-neon-green/5 border-emerald-200 dark:border-neon-green/20'
-                    }`}
-                  >
-                    <div className="mt-0.5">
-                      {insight.urgency === 'high' ? (
-                        <span className="flex w-2.5 h-2.5 rounded-full bg-neon-red shadow-[0_0_8px_rgba(255,0,84,0.6)]" />
-                      ) : insight.urgency === 'medium' ? (
-                        <span className="flex w-2.5 h-2.5 rounded-full bg-neon-orange shadow-[0_0_8px_rgba(255,159,28,0.6)]" />
-                      ) : insight.urgency === 'low' ? (
-                        <span className="flex w-2.5 h-2.5 rounded-full bg-neon-blue shadow-[0_0_8px_rgba(0,114,255,0.6)]" />
-                      ) : (
-                        <span className="flex w-2.5 h-2.5 rounded-full bg-neon-green shadow-[0_0_8px_rgba(0,245,212,0.6)]" />
-                      )}
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                        {insight.field}
-                      </h4>
-                      <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 mt-0.5 leading-relaxed">{insight.text}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
           </div>
 
-          {/* RIGHT: Results and Analytics */}
-          <div className="lg:col-span-5 space-y-8">
+          {/* COLUMN 2: Gauge & Comparisons */}
+          <div className="space-y-8">
             
             {/* Probability Gauge Box */}
             <div className="glass-panel rounded-3xl p-6 sm:p-8 flex flex-col items-center justify-center relative overflow-hidden text-center">
               
-              <h2 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-6">
+              <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-6">
                 Placement Success Potential
               </h2>
 
@@ -865,10 +816,10 @@ export default function App() {
                     <RefreshCw className="text-neon-cyan animate-spin" size={32} />
                   ) : (
                     <>
-                      <span className="text-4xl font-extrabold font-outfit text-slate-900 dark:text-white font-mono">
+                      <span className="text-5xl font-extrabold font-outfit text-slate-900 dark:text-white font-mono">
                         {probability !== null ? `${probability.toFixed(1)}%` : '---'}
                       </span>
-                      <span className="text-[10px] text-slate-500 dark:text-slate-400 font-semibold tracking-widest uppercase mt-1">
+                      <span className="text-xs text-slate-500 dark:text-slate-400 font-semibold tracking-widest uppercase mt-1">
                         PROBABILITY
                       </span>
                     </>
@@ -884,7 +835,7 @@ export default function App() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className={`px-5 py-2 rounded-2xl border text-sm font-bold shadow-sm flex items-center gap-2 ${getStatusColor(predictionStatus)}`}
+                    className={`px-5 py-2 rounded-2xl border text-base font-bold shadow-sm flex items-center gap-2 ${getStatusColor(predictionStatus)}`}
                   >
                     <Sparkles size={16} />
                     {predictionStatus}
@@ -904,7 +855,7 @@ export default function App() {
             <div className="glass-panel rounded-3xl p-6 sm:p-8">
               <div className="flex items-center gap-2 mb-6">
                 <TrendingUp size={20} className="text-neon-cyan" />
-                <h3 className="text-lg font-bold font-outfit text-slate-900 dark:text-white">Target Averages Comparison</h3>
+                <h3 className="text-xl font-bold font-outfit text-slate-900 dark:text-white">Target Averages Comparison</h3>
               </div>
 
               <div className="space-y-5">
@@ -922,9 +873,9 @@ export default function App() {
                   
                   return (
                     <div key={idx} className="space-y-1.5">
-                      <div className="flex justify-between text-xs font-semibold">
+                      <div className="flex justify-between text-sm font-semibold">
                         <span className="text-slate-600 dark:text-slate-300">{item.name}</span>
-                        <div className="flex gap-2.5 font-mono text-[11px]">
+                        <div className="flex gap-2.5 font-mono text-xs">
                           <span className="text-neon-cyan">You: {item.current}</span>
                           <span className="text-neon-green">Avg Placed: {item.target}</span>
                         </div>
@@ -950,9 +901,61 @@ export default function App() {
 
               </div>
               
-              <div className="flex items-center gap-4 mt-6 pt-4 border-t border-glass-border text-[10px] text-slate-500 dark:text-slate-400 font-mono justify-center">
+              <div className="flex items-center gap-4 mt-6 pt-4 border-t border-glass-border text-xs text-slate-500 dark:text-slate-400 font-mono justify-center">
                 <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 bg-neon-cyan rounded-full" /> Your Profile</span>
                 <span className="flex items-center gap-1"><span className="w-0.5 h-3 bg-neon-green rounded-full" /> Placed Average</span>
+              </div>
+            </div>
+          </div>
+
+          {/* COLUMN 3: Recommendations & Logs */}
+          <div className="space-y-8">
+            
+            {/* Profile Insights Recommendation Section */}
+            <div className="glass-panel rounded-3xl p-6 sm:p-8">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-2">
+                  <Info className="text-neon-purple" size={20} />
+                  <h3 className="text-xl font-bold font-outfit text-slate-900 dark:text-white">Interactive Recommendations</h3>
+                </div>
+                <span className="text-sm bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-mono px-2.5 py-1 rounded border border-glass-border">
+                  AI Checklist
+                </span>
+              </div>
+
+              <div className="space-y-4">
+                {activeInsights.map((insight, idx) => (
+                  <div 
+                    key={idx}
+                    className={`flex items-start gap-3 p-3.5 rounded-xl border ${
+                      insight.urgency === 'high' 
+                        ? 'bg-red-50/50 dark:bg-neon-red/5 border-red-200 dark:border-neon-red/20' 
+                        : insight.urgency === 'medium'
+                          ? 'bg-orange-50/50 dark:bg-neon-orange/5 border-orange-200 dark:border-neon-orange/20'
+                          : insight.urgency === 'low'
+                            ? 'bg-blue-50/50 dark:bg-neon-blue/5 border-blue-200 dark:border-neon-blue/20'
+                            : 'bg-emerald-50/50 dark:bg-neon-green/5 border-emerald-200 dark:border-neon-green/20'
+                    }`}
+                  >
+                    <div className="mt-0.5">
+                      {insight.urgency === 'high' ? (
+                        <span className="flex w-2.5 h-2.5 rounded-full bg-neon-red shadow-[0_0_8px_rgba(255,0,84,0.6)]" />
+                      ) : insight.urgency === 'medium' ? (
+                        <span className="flex w-2.5 h-2.5 rounded-full bg-neon-orange shadow-[0_0_8px_rgba(255,159,28,0.6)]" />
+                      ) : insight.urgency === 'low' ? (
+                        <span className="flex w-2.5 h-2.5 rounded-full bg-neon-blue shadow-[0_0_8px_rgba(0,114,255,0.6)]" />
+                      ) : (
+                        <span className="flex w-2.5 h-2.5 rounded-full bg-neon-green shadow-[0_0_8px_rgba(0,245,212,0.6)]" />
+                      )}
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-sm font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                        {insight.field}
+                      </h4>
+                      <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 mt-0.5 leading-relaxed">{insight.text}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -962,11 +965,11 @@ export default function App() {
                 onClick={() => setShowHistory(!showHistory)}
                 className="w-full flex items-center justify-between text-slate-900 dark:text-white font-bold font-outfit focus:outline-none cursor-pointer"
               >
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 text-base sm:text-lg">
                   <History size={18} className="text-neon-purple" />
                   <span>Evaluation Logs</span>
                 </div>
-                <span className="text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-glass-border px-2 py-0.5 rounded">
+                <span className="text-sm font-mono bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-glass-border px-2.5 py-1 rounded">
                   {history.length} Logged
                 </span>
               </button>
@@ -980,18 +983,18 @@ export default function App() {
                     className="overflow-hidden mt-4 pt-4 border-t border-glass-border space-y-3"
                   >
                     {history.length === 0 ? (
-                      <p className="text-xs text-slate-500 text-center py-4">No evaluations logged yet. Click "Log Current Profile State" to record a snapshot.</p>
+                      <p className="text-sm text-slate-500 text-center py-4">No evaluations logged yet. Click "Log Current Profile State" to record a snapshot.</p>
                     ) : (
                       <>
                         <div className="max-h-60 overflow-y-auto space-y-2 pr-1">
                           {history.map((record) => (
-                            <div key={record.id} className="p-3 bg-slate-50 dark:bg-slate-900/60 border border-glass-border rounded-xl flex items-center justify-between text-xs">
+                            <div key={record.id} className="p-3 bg-slate-50 dark:bg-slate-900/60 border border-glass-border rounded-xl flex items-center justify-between text-sm">
                               <div>
                                 <div className="flex items-center gap-1.5">
                                   <span className="font-mono text-slate-500 dark:text-slate-400">{record.timestamp}</span>
-                                  <span className="text-[10px] bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-1.5 py-0.5 rounded font-semibold font-mono">GPA: {record.cgpa}</span>
+                                  <span className="text-xs bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-1.5 py-0.5 rounded font-semibold font-mono">GPA: {record.cgpa}</span>
                                 </div>
-                                <div className="flex gap-2 mt-1 font-mono text-[10px] text-slate-500 dark:text-slate-400">
+                                <div className="flex gap-2 mt-1 font-mono text-xs text-slate-500 dark:text-slate-400">
                                   <span>Int: {record.internships}</span>
                                   <span>Proj: {record.projects}</span>
                                   <span>Apt: {record.aptitude}</span>
@@ -999,7 +1002,7 @@ export default function App() {
                               </div>
                               <div className="text-right">
                                 <span className="font-bold font-mono text-slate-900 dark:text-white block">{record.probability.toFixed(1)}%</span>
-                                <span className={`text-[9px] font-bold uppercase tracking-wider ${
+                                <span className={`text-xs font-bold uppercase tracking-wider ${
                                   record.status === 'High Chance' ? 'text-neon-green' : record.status === 'Moderate Chance' ? 'text-neon-orange' : 'text-neon-red'
                                 }`}>
                                   {record.status}
@@ -1010,7 +1013,7 @@ export default function App() {
                         </div>
                         <button 
                           onClick={clearHistory}
-                          className="w-full text-center text-[10px] text-neon-red hover:underline mt-2 font-semibold cursor-pointer"
+                          className="w-full text-center text-xs text-neon-red hover:underline mt-2 font-semibold cursor-pointer"
                         >
                           Clear Evaluation Logs
                         </button>
