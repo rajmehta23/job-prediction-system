@@ -1,16 +1,32 @@
+# ================================
+# Environment & Secrets
+# ================================
+.env
+.env.local
+.env.*.local
+.env.production
+.env.staging
+!.env.example
+
+# ================================
 # Dependency directories
+# ================================
 node_modules/
 client/node_modules/
 client/dist/
 
+# ================================
 # Python Virtual Environment
+# ================================
 venv/
 server/venv/
 .venv/
 env/
 ENV/
 
+# ================================
 # Python cache and compiled files
+# ================================
 __pycache__/
 *.pyc
 *.pyo
@@ -34,11 +50,15 @@ share/python-wheels/
 *.egg
 MANIFEST
 
-# ML Model pickle files (re-generated on runtime/build if needed)
+# ================================
+# ML Model pickle files
+# ================================
 *.pkl
 server/model.pkl
 
+# ================================
 # IDE / Editor files
+# ================================
 .vscode/
 .idea/
 *.suo
@@ -47,6 +67,39 @@ server/model.pkl
 *.sln
 *.sw?
 
+# ================================
 # OS files
+# ================================
 .DS_Store
 Thumbs.db
+desktop.ini
+
+# ================================
+# Logs
+# ================================
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ================================
+# Service Account & Credentials
+# ================================
+*.pem
+*.key
+*.cert
+*.p12
+*.pfx
+*-credentials.json
+*serviceAccountKey*.json
+firebase-adminsdk*.json
+google-credentials*.json
+
+# ================================
+# Build & Coverage
+# ================================
+coverage/
+*.lcov
+.nyc_output/

@@ -7,10 +7,16 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 import os
 import pickle
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__)
-# Enable CORS for local development requests
-CORS(app)
+
+# CORS configuration from environment
+CORS_ORIGINS = os.getenv('CORS_ORIGINS', '*')
+CORS(app, origins=CORS_ORIGINS.split(','))
 
 # Load data and fit the model exactly as in the original job_predict.py
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -138,5 +144,10 @@ def health():
 
 
 if __name__ == '__main__':
-    # Run the server on host 0.0.0.0 and port 5000
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    # Server configuration from environment variables
+    HOST = os.getenv('FLASK_HOST', '127.0.0.1')
+    PORT = int(os.getenv('FLASK_PORT', '5000'))
+    DEBUG = os.getenv('FLASK_DEBUG', 'false').lower() == 'true'
+
+    app.run(host=HOST, port=PORT, debug=DEBUG)
+
