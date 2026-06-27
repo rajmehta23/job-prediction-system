@@ -342,7 +342,69 @@ export default function App() {
       }
 
     } catch (err: any) {
-      setError(err.message || 'Could not connect to predictor service.')
+      console.warn("Backend fetch failed. Falling back to local client-side prediction model:", err.message);
+      
+      // Calculate probability client-side using the exact LogisticRegression weights
+      const intercept = -15.292541396864573
+      const coefs = [
+        1.239587528335005,      // CGPA
+        0.6394252696800117,     // Internships
+        0.1868475265885263,     // Projects
+        0.18759585086634203,    // Certifications
+        0.03442242393110755,    // Aptitude
+        0.036307745087912596    // Communication
+      ]
+
+      const z = intercept +
+        coefs[0] * cgpa +
+        coefs[1] * internships +
+        coefs[2] * projects +
+        coefs[3] * certifications +
+        coefs[4] * aptitude +
+        coefs[5] * communication
+
+      const probabilityLocal = 1 / (1 + Math.exp(-z))
+      const probPercent = Math.round(probabilityLocal * 10000) / 100
+
+      let status = "Low Chance"
+      if (probabilityLocal >= 0.7) {
+        status = "High Chance"
+      } else if (probabilityLocal >= 0.4) {
+        status = "Moderate Chance"
+      }
+
+      setProbability(probPercent)
+      setPredictionStatus(status)
+      setError(null) // Clear any error since the local engine resolved the prediction
+
+      // Trigger Confetti on High chance
+      if (status === 'High Chance' && saveToHistory) {
+        confetti({
+          particleCount: 150,
+          spread: 80,
+          origin: { y: 0.6 },
+          colors: ['#0072ff', '#00f2fe', '#9d4edd', '#00f5d4']
+        })
+      }
+
+      // Add to local history log
+      if (saveToHistory) {
+        const newRecord: PredictionHistory = {
+          id: Math.random().toString(36).substr(2, 9),
+          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          cgpa,
+          internships,
+          projects,
+          certifications,
+          aptitude,
+          communication,
+          probability: probPercent,
+          status: status
+        }
+        const updatedHistory = [newRecord, ...history].slice(0, 10)
+        setHistory(updatedHistory)
+        localStorage.setItem('careerpulse_history', JSON.stringify(updatedHistory))
+      }
     } finally {
       setLoading(false)
     }
